@@ -1,16 +1,16 @@
-
-import { useState, useEffect } from 'react';
-import IntroScreen from '../components/IntroScreen';
-import HeartAnimation from '../components/HeartAnimation';
-import FloatingText from '../components/FloatingText';
-import LoveLetter from '../components/LoveLetter';
-import PhotoSlider from '../components/PhotoSlider';
-import SurpriseButton from '../components/SurpriseButton';
-import ParticleHeart from '../components/ParticleHeart';
-import SurpriseModal from '../components/SurpriseModal';
-import FlowerPetals from '../components/FlowerPetals';
-import SweetQuotes from '../components/SweetQuotes';
-import AnimatedImageGrid from '../components/AnimatedImageGrid';
+import { useState, useEffect } from "react";
+import IntroScreen from "../components/IntroScreen";
+import HeartAnimation from "../components/HeartAnimation";
+import FloatingText from "../components/FloatingText";
+import LoveLetter from "../components/LoveLetter";
+import PhotoSlider from "../components/PhotoSlider";
+import SurpriseButton from "../components/SurpriseButton";
+import ParticleHeart from "../components/ParticleHeart";
+import SurpriseModal from "../components/SurpriseModal";
+import FlowerPetals from "../components/FlowerPetals";
+import SweetQuotes from "../components/SweetQuotes";
+import AnimatedImageGrid from "../components/AnimatedImageGrid";
+import music from "../music/Je te laisserai des mots.mp3";
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -21,10 +21,10 @@ const Index = () => {
   useEffect(() => {
     // Auto-play background music
     const audio = new Audio();
-    audio.src = "https://www.soundjay.com/misc/sounds/romantic-music.mp3";
+    audio.src = music;
     audio.loop = true;
     audio.volume = 0.3;
-    
+
     // Try to play music (modern browsers may block autoplay)
     const playMusic = async () => {
       try {
@@ -34,7 +34,7 @@ const Index = () => {
         console.log("Autoplay blocked, user interaction required");
       }
     };
-    
+
     playMusic();
 
     return () => {
@@ -43,7 +43,7 @@ const Index = () => {
   }, []);
 
   const handleMusicToggle = () => {
-    const audio = document.querySelector('audio');
+    const audio = document.querySelector("audio");
     if (audio) {
       if (musicPlaying) {
         audio.pause();
@@ -71,17 +71,21 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden romantic-bg">
       {/* Flower Petals */}
       <FlowerPetals />
-      
+
       {/* Animated Background Elements */}
       <div className="floating-hearts">
         {[...Array(15)].map((_, i) => (
-          <div key={i} className={`heart heart-${i + 1}`}>💖</div>
+          <div key={i} className={`heart heart-${i + 1}`}>
+            💖
+          </div>
         ))}
       </div>
-      
+
       <div className="twinkling-stars">
         {[...Array(20)].map((_, i) => (
-          <div key={i} className={`star star-${i + 1}`}>✨</div>
+          <div key={i} className={`star star-${i + 1}`}>
+            ✨
+          </div>
         ))}
       </div>
 
@@ -89,11 +93,11 @@ const Index = () => {
       <SweetQuotes />
 
       {/* Music Control */}
-      <button 
+      <button
         onClick={handleMusicToggle}
         className="fixed top-4 right-4 z-50 bg-pink-500/20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-pink-500/30 transition-all duration-300"
       >
-        {musicPlaying ? '🎵' : '🔇'}
+        {musicPlaying ? "🎵" : "🔇"}
       </button>
 
       {/* Main Content */}
@@ -133,7 +137,7 @@ const Index = () => {
 
       {/* Audio element for background music */}
       <audio loop>
-        <source src="https://www.soundjay.com/misc/sounds/romantic-music.mp3" type="audio/mpeg" />
+        <source src={music} type="audio/mpeg" />
       </audio>
     </div>
   );
